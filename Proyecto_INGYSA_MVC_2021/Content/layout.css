@@ -1,0 +1,185 @@
+:root {
+    --primary-color: #121F3D;
+    --secundary-color: #f1732b;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62.5%;
+    font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+}
+body
+{
+    height: 100%
+}
+h1 {
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+p, a, span, li {
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+small {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+header {
+    color: white;   
+    background-color: var(--primary-color);
+    padding: 3rem 0;    
+}
+header .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    width: 85%;
+    margin: 0 auto;
+}
+header .logo-container {
+    display: flex;
+    align-items: center;
+}
+header .nav-logo {
+    position: static;
+    top: 2rem;
+    width: 4rem;
+    height: 5rem;
+    background-image: url(../img/Logo_INGYSA.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 0 1.5rem;
+    padding-bottom: 1.5rem;
+    margin: 0 auto;
+}
+header .nav-logo-words {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left: 1.5rem;
+    letter-spacing: 15px;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+.menu-icon {
+    display: block;
+    font-size: 2rem;
+    cursor: pointer;
+}
+.nav {
+    width: 100%;
+    margin-top: 1.6rem;
+}
+nav .nav-bar.show {
+    display: block;
+    list-style: none;
+}
+nav .nav-bar {
+    display: none;
+    transition: 1s ease all;
+}
+nav .nav-bar li a:hover {
+    color: var(--secundary-color);
+    border-bottom: .1rem var(--secundary-color) solid;
+    transition: all .4s linear;
+}
+.nav .nav-bar a{
+    display: block;
+    font-size: 2rem;
+    padding: .8rem 0;
+    width: 100%;
+    text-decoration: none;
+    color: white;
+    /* text-align: center; */
+}
+main {
+    width: 100%;
+    min-height: calc(100vh - 100px);
+    background-color: #e4e4e4;
+    background-image: radial-gradient( rgba(201, 201, 201, 0.1) 50%, transparent 50% );
+    background-size: .8rem .8rem;
+    background-repeat: repeat;
+}
+
+.footer {
+    padding-bottom: .5rem;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;    
+}
+.footer .footer-container {
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+footer .footer-container h3 {
+    margin: 0 .5rem;
+    color: white;
+    border-bottom: var(--secundary-color) .15rem solid;
+    font-size: 2rem;
+}
+.footer p {
+    margin: 1rem .5rem;
+    color: rgb(182, 179, 179);
+    font-size: 1.6rem;
+    text-align: justify;
+}
+.footer .footer-redes div {
+    background-color: #fdfdfd78;
+    width: 85%;
+    border-radius: 1rem;
+    margin: 0 auto;
+    margin-bottom: .5rem;
+    padding: 1rem 0;
+    padding-left: .5rem;
+    display: flex;
+    font-size: 1.6rem;
+}
+.footer .footer-redes div:hover {    
+    background-color: #fdfdfdad;
+    cursor: pointer;
+}
+.footer .footer-redes .footer-redes-fb {
+    margin-top: 1rem;
+}
+.redes-logo {
+    margin-left: .5rem;
+    width: 2rem;
+    height: 2rem;
+}
+.footer-redes a {
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+.contact-list .contact-list-item {
+    list-style: none;
+    color: white;
+    margin-top: 1rem;
+    margin-left: 2rem;
+    font-size: 1.6rem;
+}
+.footer > div {
+    margin-top: .5rem;
+}
+/* flex-direction: row;
+    justify-content: space-evenly; media:tablet o desktop */

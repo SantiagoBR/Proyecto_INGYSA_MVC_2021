@@ -1,0 +1,12 @@
+:root {
+    --primary-color: #121F3D;
+    --secundary-color: #f1732b;
+}
+.footer .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.footer .footer-redes, .footer .footer-contacto {
+    display: inline-block;
+    width: 50%;
+}

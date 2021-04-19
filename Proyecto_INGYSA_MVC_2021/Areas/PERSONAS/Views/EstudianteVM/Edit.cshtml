@@ -1,0 +1,242 @@
+﻿@model Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.MVVM.EstudianteVM
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @*Datos Personales*@
+
+        <div class="jumbotron">
+            <h2 style="text-align:center"><span class="text-primary">Datos Personales</span></h2>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="row">
+                <div class="form-group col-md-4 col-sm-12">
+                    @Html.LabelFor(model => model.Estudiante.Nombres, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Estudiante.Nombres, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Estudiante.Nombres, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4 col-sm-12">
+                    @Html.LabelFor(model => model.Estudiante.ApellidoP, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Estudiante.ApellidoP, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Estudiante.ApellidoP, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4 col-sm-12">
+                    @Html.LabelFor(model => model.Estudiante.ApellidoM, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Estudiante.ApellidoM, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Estudiante.ApellidoM, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="form-group col-md-4 col-sm-12">
+                    @Html.LabelFor(model => model.Estudiante.FechaNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Estudiante.FechaNacimiento, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Estudiante.FechaNacimiento, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4 col-sm-12">
+                    @Html.LabelFor(model => model.Estudiante.Genero, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="dropdown">
+                            @Html.DropDownListFor(model => model.Estudiante.Genero, new SelectList(Enum.GetValues(typeof(Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.Genero))),
+       "Seleccione un Genero", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Estudiante.Genero, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="row">
+                <div class="form-group col-md-4 col-sm-12">
+                    @Html.LabelFor(model => model.Estudiante.TipoSangre, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="dropdown">
+                            @Html.DropDownListFor(model => model.Estudiante.TipoSangre, new SelectList(Enum.GetValues(typeof(Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.TipoSangre))),
+       "Seleccione un tipo de Sangre", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Estudiante.TipoSangre, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4 col-sm-12">
+                    @Html.LabelFor(model => model.Estudiante.RH, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="dropdown">
+                            @Html.DropDownListFor(model => model.Estudiante.RH, new SelectList(Enum.GetValues(typeof(Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.RH))),
+       "Seleccione un RH", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Estudiante.RH, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4 col-sm-12">
+                    @Html.LabelFor(model => model.Estudiante.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Estudiante.Estado)
+                            @Html.ValidationMessageFor(model => model.Estudiante.Estado, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr width="80%" />
+        @*Datos del Documento*@
+
+        <div class="jumbotron">
+            <h2 style="text-align:center"><span class="text-primary">Datos del Documento</span></h2>
+            <hr />
+
+            @Html.EditorFor(model => model.HistoricoDocumentoPersona.HistoricoDocumentoPersonaId, new { htmlAttributes = new { @type = "hidden" } })
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.HistoricoDocumentoPersona.TipoDocumento, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="dropdown">
+                            @Html.DropDownListFor(model => model.HistoricoDocumentoPersona.TipoDocumento, new SelectList(Enum.GetValues(typeof(Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.TipoDocumento))),
+                          "Seleccione un tipo de documento", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.HistoricoDocumentoPersona.TipoDocumento, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.HistoricoDocumentoPersona.Numero, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.HistoricoDocumentoPersona.Numero, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HistoricoDocumentoPersona.Numero, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.HistoricoDocumentoPersona.FechaExpedicion, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.HistoricoDocumentoPersona.FechaExpedicion, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HistoricoDocumentoPersona.FechaExpedicion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.HistoricoDocumentoPersona.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.HistoricoDocumentoPersona.Estado)
+                            @Html.ValidationMessageFor(model => model.HistoricoDocumentoPersona.Estado, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr width="80%" />
+
+        @*Datos Telefonicos*@
+
+        <div class="jumbotron">
+            <h2><span class="text-primary">Datos Telefonicos</span></h2>
+            <div class="form-group">
+
+                @Html.EditorFor(model => model.HistoricoTelefonoPersona.HistoricoTelefonoPersonaId, new { htmlAttributes = new { @type = "hidden" } })
+
+                @Html.LabelFor(model => model.HistoricoTelefonoPersona.TiposTelefono, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="dropdown">
+                        @Html.DropDownListFor(model => model.HistoricoTelefonoPersona.TiposTelefono, new SelectList(Enum.GetValues(typeof(Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.TiposTelefono))),
+                      "Seleccione un tipo de telefono", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.HistoricoTelefonoPersona.TiposTelefono, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.HistoricoTelefonoPersona.Numero, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.HistoricoTelefonoPersona.Numero, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HistoricoTelefonoPersona.Numero, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.HistoricoTelefonoPersona.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.HistoricoTelefonoPersona.Estado)
+                        @Html.ValidationMessageFor(model => model.HistoricoTelefonoPersona.Estado, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr width="80%" />
+
+        @*Datos de ubicación*@
+
+        <div class="jumbotron">
+            <h2><span class="text-primary">Datos de ubicación</span></h2>
+
+            @Html.EditorFor(model => model.HistoricoPersonaDireccion.HistoricoPersonaDireccionId, new { htmlAttributes = new { @type = "hidden" } })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.HistoricoPersonaDireccion.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.HistoricoPersonaDireccion.Direccion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HistoricoPersonaDireccion.Direccion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.HistoricoPersonaDireccion.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.HistoricoPersonaDireccion.Estado)
+                        @Html.ValidationMessageFor(model => model.HistoricoPersonaDireccion.Estado, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Editar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

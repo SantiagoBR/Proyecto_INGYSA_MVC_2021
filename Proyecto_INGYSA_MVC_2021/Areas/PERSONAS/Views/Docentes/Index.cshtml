@@ -1,0 +1,192 @@
+﻿@model Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.MVVM.DocenteVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<main>
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create", "", new { htmlAttributes = new { @class = "btn btn-primary" } })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Docente.Nombres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Docente.ApellidoP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Docente.ApellidoM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Docente.FechaNacimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Docente.Genero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Docente.TipoSangre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Docente.RH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Docente.Estado)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.docentes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApellidoP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApellidoM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaNacimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoSangre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PersonaId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PersonaId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PersonaId })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HistoricoDocumentoPersona.TipoDocumento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HistoricoDocumentoPersona.Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HistoricoDocumentoPersona.FechaExpedicion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HistoricoDocumentoPersona.Estado)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.HistoricoDocumentoPersonas)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoDocumento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaExpedicion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PersonaId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PersonaId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PersonaId })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HistoricoTelefonoPersona.TiposTelefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HistoricoTelefonoPersona.Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HistoricoTelefonoPersona.Estado)
+            </th>
+            <th>
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.HistoricoTelefonoPersonas)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TiposTelefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PersonaId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PersonaId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PersonaId })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HistoricoPersonaDireccion.Direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HistoricoPersonaDireccion.Estado)
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.HistoricoPersonaDireccions)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PersonaId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PersonaId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PersonaId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</main>

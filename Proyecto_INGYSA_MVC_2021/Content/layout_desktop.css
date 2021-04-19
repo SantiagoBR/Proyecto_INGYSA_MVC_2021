@@ -1,0 +1,26 @@
+:root {
+    --primary-color: #121F3D;
+    --secundary-color: #f1732b;
+}
+header .nav {
+    width: auto;
+}
+nav .nav-bar {
+    display: block;
+    list-style: none;
+}
+nav .nav-bar .nav-bar-item {
+    display: inline-block;
+}
+nav .nav-bar .nav-bar-item a {
+    display: block;
+    padding: .5rem 1rem;
+    transition: all linear .4s;
+}
+header .menu-icon {
+    display: none;
+}
+footer .footer-nosotros, .footer .footer-redes, .footer .footer-contacto {
+    display: inline-block;
+    width: 33.3%;
+}

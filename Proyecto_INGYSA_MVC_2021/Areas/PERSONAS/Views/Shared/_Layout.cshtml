@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - INGYSA</title>
+    <link rel="shortcut icon" href="~/img/Logo_INGYSA.png">
+    <link href="~/Content/layout.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/layout_tablet.css" media="screen and (min-width: 500px)">
+    <link rel="stylesheet" href="~/Content/layout_desktop.css" media="screen and (min-width: 830px)">
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo-container">
+                <a href="#" class="nav-logo"></a>
+                <span class="nav-logo-words">
+                    INGYSA
+                </span>
+            </div>
+            <span class="menu-icon">
+                <i class="fas fa-bars"></i>
+            </span>
+            <nav class="nav">
+                <ul class="nav-bar">
+                    <li class="nav-bar-item"><a href="">Inicio</a></li>
+                    <li class="nav-bar-item"><a href="">Nosotros</a></li>
+                    <li class="nav-bar-item"><a href="">Contacto</a></li>
+                    <li class="nav-bar-item"><a href="">Equipo</a></li>
+                    <li class="nav-bar-item"><a href="">Ingresar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-nosotros">
+                <h3>
+                    Nosotros
+                </h3>
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque a aut tempora, earum delectus ex, minima id beatae cumque natus fugit quam hic ad officiis recusandae deserunt animi laboriosam rerum.
+                </p>
+            </div>
+            <div class="footer-redes">
+                <h3>
+                    Redes
+                </h3>
+                <div class="footer-redes-fb">
+                    <img src="~/img/fb-logo.png" alt="Facebook Logo" class="redes-logo">
+                    <a href="">Facebook</a>
+                </div>
+                <div class="footer-redes-tw">
+                    <img src="~/img//tw-logo.png" alt="Twitter Logo" class="redes-logo">
+                    <a href="">Twitter</a>
+                </div>
+                <div class="footer-redes-ig">
+                    <img src="~/img/ig-logo.png" alt="Instagram Logo" class="redes-logo">
+                    <a href="">Instagram</a>
+                </div>
+            </div>
+            <div class="footer-contacto">
+                <h3>
+                    Contacto
+                </h3>
+                <ul class="contact-list">
+                    <li class="contact-list-item">
+                        <span>
+                            <i class="far fa-envelope"></i>
+                            correo@correo.com
+                        </span>
+                    </li>
+                    <li class="contact-list-item">
+                        <span>
+                            <i class="fas fa-phone"></i>
+                            11-111-111
+                        </span>
+                    </li>
+                    <li class="contact-list-item">
+                        <span>
+                            <i class="fas fa-location-arrow"></i>
+                            Avenida esperanza #85 - 17
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
