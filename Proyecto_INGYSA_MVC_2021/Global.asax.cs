@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Proyecto_INGYSA_MVC_2021.Logic;
 
 namespace Proyecto_INGYSA_MVC_2021
 {
@@ -16,6 +17,9 @@ namespace Proyecto_INGYSA_MVC_2021
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            RoleActions roleActions = new RoleActions();
+            roleActions.AddUserAndRole();
         }
     }
 }
