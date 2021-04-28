@@ -92,7 +92,6 @@ nav .nav-bar.show {
 }
 nav .nav-bar {
     display: none;
-    transition: 1s ease all;
 }
 nav .nav-bar li a:hover {
     color: var(--secundary-color);
