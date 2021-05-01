@@ -333,6 +333,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Account\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\ACADEMICO\Controllers\" />
     <Folder Include="Areas\ACADEMICO\Views\Shared\" />

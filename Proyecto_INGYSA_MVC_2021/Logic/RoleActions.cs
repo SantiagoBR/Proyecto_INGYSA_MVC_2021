@@ -37,7 +37,7 @@ namespace Proyecto_INGYSA_MVC_2021.Logic
                 Email = "admin@ingysa.com"
             };
 
-            IdUserResult = userMgr.Create(appUser, "1234");
+            IdUserResult = userMgr.Create(appUser, "123456");
 
             if (!userMgr.IsInRole(userMgr.FindByEmail("admin@ingysa.com").Id, "admin"))
             {
