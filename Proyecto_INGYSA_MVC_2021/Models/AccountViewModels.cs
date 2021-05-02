@@ -68,6 +68,9 @@ namespace Proyecto_INGYSA_MVC_2021.Models
         [EmailAddress]
         [Display(Name = "Correo electrónico")]
         public string Email { get; set; }
+        [Required]
+        [Display(Name = "Rol")]
+        public string Role { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 6)]

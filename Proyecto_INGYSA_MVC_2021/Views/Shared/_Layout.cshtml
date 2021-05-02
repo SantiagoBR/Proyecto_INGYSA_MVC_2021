@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model Proyecto_INGYSA_MVC_2021.Models.LoginViewModel 
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -31,7 +33,9 @@
                     <li class="nav-bar-item"><a href="#about">Nosotros</a></li>
                     <li class="nav-bar-item"><a href="#contact">Contacto</a></li>
                     <li class="nav-bar-item"><a href="#team">Equipo</a></li>
-                    <li class="nav-bar-item"><a href="https://localhost:44316/PERSONAS/EstudianteVM">Ingresar</a></li>
+                    <li class="nav-bar-item"><a href="https://localhost:44316/Account/Login">Ingresar</a></li>
+                    <li>@Context.User.Identity.Name</li>
+                    <li>@Html.Action("LogOff","AccountController")</li>
                 </ul>
             </nav>
         </div>
