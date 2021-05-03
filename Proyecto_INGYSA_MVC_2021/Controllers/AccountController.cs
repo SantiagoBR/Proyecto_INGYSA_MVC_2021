@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Proyecto_INGYSA_MVC_2021.Models;
@@ -15,6 +16,7 @@ namespace Proyecto_INGYSA_MVC_2021.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -67,7 +69,8 @@ namespace Proyecto_INGYSA_MVC_2021.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
-        {
+        {          
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -144,32 +147,71 @@ namespace Proyecto_INGYSA_MVC_2021.Controllers
 
         //
         // POST: /Account/Register
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Register(RegisterViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+        //        var result = await UserManager.CreateAsync(user, model.Password);
+        //        if (result.Succeeded)
+        //        {
+        //            await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
+        //            // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
+        //            // Enviar correo electrónico con este vínculo
+        //            // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+        //            // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+        //            // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
+
+        //            return RedirectToAction("Index", "Home");
+        //        }
+        //        AddErrors(result);
+        //    }
+
+        //    // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
+        //    return View(model);
+        //}
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public ActionResult Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Enviar correo electrónico con este vínculo
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
+            INGYSA_DB_Context context = new INGYSA_DB_Context();
+            IdentityResult IdRoleResult;
+            IdentityResult IdUserResult;
 
-                    return RedirectToAction("Index", "Home");
-                }
-                AddErrors(result);
+            // Create a RoleStore object by using the ApplicationDbContext object. 
+            // The RoleStore is only allowed to contain IdentityRole objects.
+            var roleStore = new RoleStore<IdentityRole>(context);
+
+            // Create a RoleManager object that is only allowed to contain IdentityRole objects.
+            var roleMgr = new RoleManager<IdentityRole>(roleStore);
+
+            // Then, you create the "canEdit" role if it doesn't already exist.
+            if (!roleMgr.RoleExists(model.Role))
+            {
+                IdRoleResult = roleMgr.Create(new IdentityRole { Name = model.Role });
             }
 
-            // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
-            return View(model);
+            var userMgr = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var appUser = new ApplicationUser
+            {
+                UserName = model.Email,
+                Email = model.Email
+            };
+
+            IdUserResult = userMgr.Create(appUser, model.Password);
+
+            if (!userMgr.IsInRole(userMgr.FindByEmail(model.Email).Id, model.Role))
+            {
+                IdUserResult = userMgr.AddToRole(userMgr.FindByEmail(model.Email).Id, model.Role);
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         //
