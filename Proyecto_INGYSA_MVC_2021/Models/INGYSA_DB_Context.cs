@@ -7,10 +7,12 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Proyecto_INGYSA_MVC_2021.Models
 {
-    public class INGYSA_DB_Context:DbContext
+    public class INGYSA_DB_Context:IdentityDbContext
     {
         public INGYSA_DB_Context()
         {

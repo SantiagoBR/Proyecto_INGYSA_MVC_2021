@@ -6,7 +6,7 @@ header .nav {
     width: auto;
 }
 nav .nav-bar {
-    display: block;
+    display: flex;
     list-style: none;
 }
 nav .nav-bar .nav-bar-item {
