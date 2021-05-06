@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Proyecto_INGYSA_MVC_2021.Models
 {
@@ -70,7 +71,7 @@ namespace Proyecto_INGYSA_MVC_2021.Models
         public string Email { get; set; }
         [Required]
         [Display(Name = "Rol")]
-        public string Role { get; set; }
+        public ICollection<CreateNewRole> createNewRoles { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 6)]
@@ -82,6 +83,16 @@ namespace Proyecto_INGYSA_MVC_2021.Models
         [Display(Name = "Confirmar contraseña")]
         [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class CreateNewRole
+    {
+        [Key]
+        [Column(Order = 1)]
+        public int RoleID { get; set; }
+        [Required]
+        [Display(Name = "Rol")]
+        public string Role { get; set; }
     }
 
     public class ResetPasswordViewModel

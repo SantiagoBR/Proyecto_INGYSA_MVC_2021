@@ -175,6 +175,39 @@ namespace Proyecto_INGYSA_MVC_2021.Controllers
         //    return View(model);
         //}
 
+        //GET: /Account/CreateRole
+        [AllowAnonymous]
+        public ActionResult CreateRole()
+        {
+            return View();
+        }
+
+        //POST: 
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateRole(CreateNewRole model)
+        {
+            INGYSA_DB_Context context = new INGYSA_DB_Context();
+            IdentityResult IdRoleResult;
+
+            // Create a RoleStore object by using the ApplicationDbContext object. 
+            // The RoleStore is only allowed to contain IdentityRole objects.
+            var roleStore = new RoleStore<IdentityRole>(context);
+
+            // Create a RoleManager object that is only allowed to contain IdentityRole objects.
+            var roleMgr = new RoleManager<IdentityRole>(roleStore);
+
+            // Then, you create the "canEdit" role if it doesn't already exist.
+            if (!roleMgr.RoleExists(model.Role))
+            {
+                IdRoleResult = roleMgr.Create(new IdentityRole { Name = model.Role });
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -192,9 +225,9 @@ namespace Proyecto_INGYSA_MVC_2021.Controllers
             var roleMgr = new RoleManager<IdentityRole>(roleStore);
 
             // Then, you create the "canEdit" role if it doesn't already exist.
-            if (!roleMgr.RoleExists(model.Role))
+            if (!roleMgr.RoleExists(model.createNewRoles.ToString()))
             {
-                IdRoleResult = roleMgr.Create(new IdentityRole { Name = model.Role });
+                IdRoleResult = roleMgr.Create(new IdentityRole { Name = model.createNewRoles.ToString()});
             }
 
             var userMgr = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
@@ -206,9 +239,9 @@ namespace Proyecto_INGYSA_MVC_2021.Controllers
 
             IdUserResult = userMgr.Create(appUser, model.Password);
 
-            if (!userMgr.IsInRole(userMgr.FindByEmail(model.Email).Id, model.Role))
+            if (!userMgr.IsInRole(userMgr.FindByEmail(model.Email).Id, model.createNewRoles.ToString()))
             {
-                IdUserResult = userMgr.AddToRole(userMgr.FindByEmail(model.Email).Id, model.Role);
+                IdUserResult = userMgr.AddToRole(userMgr.FindByEmail(model.Email).Id, model.createNewRoles.ToString());
             }
 
             return RedirectToAction("Index", "Home");

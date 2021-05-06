@@ -2,6 +2,7 @@
 using Proyecto_INGYSA_MVC_2021.Areas.COLEGIOS.Data;
 using Proyecto_INGYSA_MVC_2021.Areas.GENERAL.Data;
 using Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data;
+using Proyecto_INGYSA_MVC_2021.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -53,5 +54,7 @@ namespace Proyecto_INGYSA_MVC_2021.Models
         public DbSet<Matricula> Matriculas { get; set; }
         public DbSet<Lector_CB> Lector_CB { get; set; }
         public DbSet<Tarjeta> Tarjetas { get; set; }
+        public DbSet<RoleModel> RoleModel { get; set; }
+        public DbSet<CreateNewRole> CreateNewRoles { get; set; }
     }
 }
