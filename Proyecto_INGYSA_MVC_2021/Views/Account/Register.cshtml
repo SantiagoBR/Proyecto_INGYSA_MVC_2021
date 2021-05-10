@@ -1,6 +1,7 @@
 ﻿@model Proyecto_INGYSA_MVC_2021.Models.RegisterViewModel
 @{
     ViewBag.Title = "Registrarse";
+    List<SelectListItem> Items = (List<SelectListItem>)ViewBag.items;
 }
 
 <main>
@@ -22,8 +23,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.createNewRoles, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.createNewRoles, new SelectList(GetValues(typeof(Proyecto_INGYSA_MVC_2021.Models.CreateNewRole))),
-                    "Seleccione un Rol", new { @class = "container-form__label--input" })
+                @Html.DropDownList("items", Items, "Selecciones uno por favor", new {@class = "form-control"})
                 @Html.ValidationMessageFor(m => m.createNewRoles, "", new { @class = "text-danger" })
             </div>
         </div>

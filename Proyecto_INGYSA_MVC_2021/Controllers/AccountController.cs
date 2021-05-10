@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -10,6 +11,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Proyecto_INGYSA_MVC_2021.Models;
+using Proyecto_INGYSA_MVC_2021.Models.RolViewModel;
 
 namespace Proyecto_INGYSA_MVC_2021.Controllers
 {
@@ -142,6 +144,27 @@ namespace Proyecto_INGYSA_MVC_2021.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            List<RolViewModel> lst = null;
+            using (RolEntities db = new RolEntities())
+            {
+                lst = (from d in db.AspNetRoles
+                       select new RolViewModel
+                       {
+                           Id = d.Id,
+                           Name = d.Name
+                       }).ToList();
+            }
+            List<SelectListItem> items = lst.ConvertAll(d =>
+            {
+                return new SelectListItem()
+                {
+                    Text = d.Name.ToString(),
+                    Value = d.Id.ToString(),
+                    Selected = false
+                };
+            });
+
+            ViewBag.items = items;
             return View();
         }
 
@@ -207,27 +230,26 @@ namespace Proyecto_INGYSA_MVC_2021.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
+        //POST: /Account/Register
+        //REGISTER
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model)
         {
             INGYSA_DB_Context context = new INGYSA_DB_Context();
-            IdentityResult IdRoleResult;
             IdentityResult IdUserResult;
-
-            // Create a RoleStore object by using the ApplicationDbContext object. 
-            // The RoleStore is only allowed to contain IdentityRole objects.
-            var roleStore = new RoleStore<IdentityRole>(context);
-
-            // Create a RoleManager object that is only allowed to contain IdentityRole objects.
-            var roleMgr = new RoleManager<IdentityRole>(roleStore);
-
-            // Then, you create the "canEdit" role if it doesn't already exist.
-            if (!roleMgr.RoleExists(model.createNewRoles.ToString()))
+            if (ModelState.IsValid)
             {
-                IdRoleResult = roleMgr.Create(new IdentityRole { Name = model.createNewRoles.ToString()});
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
             }
 
             var userMgr = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
