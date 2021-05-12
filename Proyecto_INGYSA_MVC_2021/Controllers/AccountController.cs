@@ -159,7 +159,7 @@ namespace Proyecto_INGYSA_MVC_2021.Controllers
                 return new SelectListItem()
                 {
                     Text = d.Name.ToString(),
-                    Value = d.Id.ToString(),
+                    Value = d.Name.ToString(),
                     Selected = false
                 };
             });
@@ -239,31 +239,36 @@ namespace Proyecto_INGYSA_MVC_2021.Controllers
         {
             INGYSA_DB_Context context = new INGYSA_DB_Context();
             IdentityResult IdUserResult;
+
+            //var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+            //var result = await UserManager.CreateAsync(user, model.Password);
+            //if (result.Succeeded)
+            //{
+            //    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+            //    return RedirectToAction("Index", "Home");
+            //}
+            //AddErrors(result);
+
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                var userMgr = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var appUser = new ApplicationUser
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    UserName = model.User.Replace(" ", "_"),
+                    Email = model.Email
+                };
 
-                    return RedirectToAction("Index", "Home");
+                IdUserResult = userMgr.Create(appUser, model.Password);
+
+                if (!userMgr.IsInRole(userMgr.FindByEmail(model.Email).Id, model.Role.ToString()))
+                {
+                    IdUserResult = userMgr.AddToRole(userMgr.FindByEmail(model.Email).Id, model.Role.ToString());
+                    if (IdUserResult.Succeeded)
+                    {
+                        await SignInManager.SignInAsync(appUser, isPersistent: false, rememberBrowser: false);
+                    }
                 }
-                AddErrors(result);
-            }
-
-            var userMgr = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            var appUser = new ApplicationUser
-            {
-                UserName = model.Email,
-                Email = model.Email
-            };
-
-            IdUserResult = userMgr.Create(appUser, model.Password);
-
-            if (!userMgr.IsInRole(userMgr.FindByEmail(model.Email).Id, model.createNewRoles.ToString()))
-            {
-                IdUserResult = userMgr.AddToRole(userMgr.FindByEmail(model.Email).Id, model.createNewRoles.ToString());
             }
 
             return RedirectToAction("Index", "Home");
