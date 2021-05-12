@@ -244,6 +244,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logic\RoleActions.cs" />
+    <Compile Include="Migrations\202105102359041_ApplicationContextMigrations.Configuration.cs" />
+    <Compile Include="Migrations\202105102359041_ApplicationContextMigrations.Configuration.Designer.cs">
+      <DependentUpon>202105102359041_ApplicationContextMigrations.Configuration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetRoles.cs">
@@ -397,6 +401,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202105102359041_ApplicationContextMigrations.Configuration.resx">
+      <DependentUpon>202105102359041_ApplicationContextMigrations.Configuration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
