@@ -2,31 +2,36 @@
     --primary-color: #121F3D;
     --secundary-color: #f1732b;
 }
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
 html {
     font-size: 62.5%;
     font-family: Arial, Helvetica, sans-serif;
     scroll-behavior: smooth;
 }
-.text-danger{
-    color: #e80202;
-    font-size: 1.2rem;
-    font-weight: 400;
+.main {
+    padding: 2rem 0;
+    /*background-color: var(--primary-color);*/
 }
+
 .container-form {
-    width: 100%;
+    width: 70%;
     margin: 0 auto;
     padding: 2rem;
+    border: solid #5e5858 1px;
+    border-radius: 2rem;
     background-color: rgb(255 255 255 / 0.2);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
 .container-form__div--title {
     width: 100%;
     display: flex;
@@ -39,8 +44,9 @@ html {
     font-size: 3rem;
     margin: 1rem 0;
 }
+
 .container-form__label {
-    width: 100%;
+    width: 45%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -63,14 +69,14 @@ html {
     border-radius: 1rem;
 }
 
-    .container-form__label--input:hover {
-        box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-    }
+.container-form__label--input:hover {
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+}
 
-    .container-form__label--input:focus-visible {
-        box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-        outline: none;
-    }
+.container-form__label--input:focus-visible {
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+    outline: none;
+}
 
 .container-form__label--checkBox {
     margin-top: 1rem;
@@ -78,10 +84,10 @@ html {
     width: 2rem;
 }
 
-    .container-form__label--checkBox:focus-visible {
-        outline: none;
-        box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-    }
+.container-form__label--checkBox:focus-visible {
+    outline: none;
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+}
 
 .container-form__label--button {
     width: 30%;
@@ -95,11 +101,11 @@ html {
     cursor: pointer;
 }
 
-    .container-form__label--button:hover {
-        background-color: var(--primary-color);
-        opacity: .9;
-        box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-    }
+.container-form__label--button:hover {
+    background-color: var(--primary-color);
+    opacity: .9;
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+}
 
 .container-form__label--anchor {
     display: inline-block;
