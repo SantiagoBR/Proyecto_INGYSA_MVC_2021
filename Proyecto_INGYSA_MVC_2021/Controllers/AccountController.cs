@@ -61,6 +61,10 @@ namespace Proyecto_INGYSA_MVC_2021.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (User.Identity.Name != "")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -264,7 +268,7 @@ namespace Proyecto_INGYSA_MVC_2021.Controllers
                 if (!userMgr.IsInRole(userMgr.FindByEmail(model.Email).Id, model.Role.ToString()))
                 {
                     IdUserResult = userMgr.AddToRole(userMgr.FindByEmail(model.Email).Id, model.Role.ToString());
-                    if (IdUserResult.Succeeded)
+                    if (IdUserResult.Succeeded && (User.Identity.Name == null || User.Identity.Name == ""))
                     {
                         await SignInManager.SignInAsync(appUser, isPersistent: false, rememberBrowser: false);
                     }

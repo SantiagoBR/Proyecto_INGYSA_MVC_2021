@@ -50,8 +50,7 @@ namespace Proyecto_INGYSA_MVC_2021.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Correo electrónico")]
-        [EmailAddress]
+        [Display(Name = "Nombre de usuario")]
         public string Email { get; set; }
 
         [Required]
