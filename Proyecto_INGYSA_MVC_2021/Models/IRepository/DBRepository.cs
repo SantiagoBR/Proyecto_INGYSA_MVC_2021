@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -49,6 +50,23 @@ namespace Proyecto_INGYSA_MVC_2021.Models.IRepository
         }
         public virtual int Commit()
         {
+            bool saveFailed;
+            do
+            {
+                saveFailed = false;
+
+                try
+                {
+                    DbContext.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    saveFailed = true;
+
+                    // Update the values of the entity that failed to save from the store
+                    ex.Entries.Single().Reload();
+                }
+            } while (saveFailed);
             return DbContext.SaveChanges();
         }
         //ok
