@@ -8,6 +8,8 @@ namespace Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data
     public enum Genero
     {
         Masculino = 1,
-        Femenino = 2
+        Femenino = 2,
+        Otro = 3,
+        Prefiero_No_Decirlo = 4
     }
 }
