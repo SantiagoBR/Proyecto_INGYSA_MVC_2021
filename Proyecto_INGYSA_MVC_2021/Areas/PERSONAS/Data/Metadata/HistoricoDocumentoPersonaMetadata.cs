@@ -12,7 +12,7 @@ namespace Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.Metadata
         [Key]
         [Column(Order = 1)]
         public int HistoricoDocumentoPersonaId { get; set; }
-        [Required(ErrorMessage = "Seleccione uno Por Favor")]
+        [Required(ErrorMessage = "Seleccione uno")]
         public TipoDocumento TipoDocumento { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "El número es requerido"), RegularExpression("(^[0-9]+$)", ErrorMessage = "Solo numeros")]
         [StringLength(10, ErrorMessage = "Maximo {1} caracteres")]
