@@ -8,7 +8,7 @@
     {
         @Html.AntiForgeryToken()
     <li class="nav-bar-item">
-        @Html.ActionLink("Hola " + User.Identity.GetUserName().Replace("_", " ") + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        @Html.ActionLink("Hola " + User.Identity.GetUserName().Replace("_", " ") + "!", "Index", "Manage", new { @area = "" }, htmlAttributes: new { title = "Manage" })
     </li>
     <li class="nav-bar-item"><a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>
     }
