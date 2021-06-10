@@ -281,7 +281,8 @@
   <ItemGroup>
     <Content Include="Content\forms.css" />
     <Content Include="Content\forms_desktop.css" />
-    <Content Include="Content\forms_tablet.css" />
+    <Content Include="Content\forms_login_register.css" />
+    <Content Include="Content\forms_login_register_desktop.css" />
     <Content Include="Content\index.css" />
     <Content Include="Content\index_desktop.css" />
     <Content Include="Content\index_slider.css" />

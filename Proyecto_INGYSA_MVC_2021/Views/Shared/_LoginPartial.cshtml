@@ -7,14 +7,14 @@
     using (Html.BeginForm("LogOff", "Account", new { @area = "" } ,FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
-    <li class="nav-bar-item">
-        @Html.ActionLink("Hola " + User.Identity.GetUserName().Replace("_", " ") + "!", "Index", "Manage", new { @area = "" }, htmlAttributes: new { title = "Manage" })
-    </li>
-    <li class="nav-bar-item"><a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>
+        <li class="nav-bar-item">
+        @Html.ActionLink("Hola " + User.Identity.GetUserName().Replace("_", " ") + "!", "Index", "Manage", new { @area = "" }, htmlAttributes: new { title = "Administrar cuenta" })
+        </li>
+        <li class="nav-bar-item"><a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>
     }
-    }
-    else
-    {
-    <li class="nav-bar-item">@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null ,htmlAttributes: new { id = "registerLink" })</li>
-    <li class="nav-bar-item">@Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null ,htmlAttributes: new { id = "loginLink" })</li>
-    }
+ }
+ else
+ {
+    <li class="nav-bar-item">@Html.ActionLink("Registrarse", "Register", "Account", new { @area = ""} ,htmlAttributes: new { id = "registerLink" })</li>
+    <li class="nav-bar-item">@Html.ActionLink("Iniciar sesión", "Login", "Account", new { @area = "" }, htmlAttributes: new { id = "loginLink" })</li>
+ }

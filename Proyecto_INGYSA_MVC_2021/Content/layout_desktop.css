@@ -5,6 +5,10 @@
 header .nav {
     width: auto;
 }
+nav .nav-bar.show {
+    display: flex;
+    list-style: none;
+}
 nav .nav-bar {
     display: flex;
     list-style: none;

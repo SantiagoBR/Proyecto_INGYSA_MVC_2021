@@ -96,10 +96,10 @@ nav .nav-bar {
 nav .nav-bar li a:hover {
     color: var(--secundary-color);
     border-bottom: .1rem var(--secundary-color) solid;
-    transition: all .4s linear;
+    transition: all .4s ease-in-out;
 }
 .nav .nav-bar a{
-    color: red;
+    /*color: red;*/
     display: block;
     font-size: 2rem;
     padding: .8rem 0;

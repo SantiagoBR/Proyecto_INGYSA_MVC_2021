@@ -1,23 +1,25 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title | INGYSA</title>
     <link rel="shortcut icon" href="~/img/Logo_INGYSA.png">
     <link rel="stylesheet" href="~/Content/layout.css">
     <link rel="stylesheet" href="~/Content/layout_tablet.css" media="screen and (min-width: 500px)">
-    <link rel="stylesheet" href="~/Content/layout_desktop.css" media="screen and (min-width: 830px)">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/layout_desktop.css" media="screen and (min-width: 990px)">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
+          crossorigin="anonymous">
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <header class="header">
         <div class="nav-container">
             <div class="logo-container">
-                <a href="#" class="nav-logo"></a>
+                <a href="" class="nav-logo"></a>
                 <span class="nav-logo-words">
                     INGYSA
                 </span>
@@ -40,7 +42,6 @@
                             <li class="nav-bar-item"><a href="#about">Nosotros</a></li>
                             <li class="nav-bar-item"><a href="#contact">Contacto</a></li>
                             <li class="nav-bar-item"><a href="#team">Equipo</a></li>
-                            @*<li class="nav-bar-item">@Context.User.Identity.Name</li>*@
                             @Html.Partial("_LoginPartial")
                         </ul>
                     }

@@ -63,14 +63,14 @@ html {
     border-radius: 1rem;
 }
 
-    .container-form__label--input:hover {
-        box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-    }
+.container-form__label--input:hover {
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+}
 
-    .container-form__label--input:focus-visible {
-        box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-        outline: none;
-    }
+.container-form__label--input:focus-visible {
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+    outline: none;
+}
 
 .container-form__label--checkBox {
     margin-top: 1rem;
@@ -78,12 +78,15 @@ html {
     width: 2rem;
 }
 
-    .container-form__label--checkBox:focus-visible {
-        outline: none;
-        box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-    }
+.container-form__label--checkBox:focus-visible {
+    outline: none;
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+}
 
 .container-form__label--button {
+    text-decoration: none;  
+    font-size: 1.3rem;
+    text-align: center;
     width: 30%;
     height: 3rem;
     border: none;
