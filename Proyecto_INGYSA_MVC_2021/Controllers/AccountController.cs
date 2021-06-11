@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -10,6 +11,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Proyecto_INGYSA_MVC_2021.Models;
+using Proyecto_INGYSA_MVC_2021.Models.RolViewModel;
 
 namespace Proyecto_INGYSA_MVC_2021.Controllers
 {
@@ -59,6 +61,10 @@ namespace Proyecto_INGYSA_MVC_2021.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (User.Identity.Name != "")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -142,6 +148,27 @@ namespace Proyecto_INGYSA_MVC_2021.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            List<RolViewModel> lst = null;
+            using (RolEntities db = new RolEntities())
+            {
+                lst = (from d in db.AspNetRoles
+                       select new RolViewModel
+                       {
+                           Id = d.Id,
+                           Name = d.Name
+                       }).ToList();
+            }
+            List<SelectListItem> items = lst.ConvertAll(d =>
+            {
+                return new SelectListItem()
+                {
+                    Text = d.Name.ToString(),
+                    Value = d.Name.ToString(),
+                    Selected = false
+                };
+            });
+
+            ViewBag.items = items;
             return View();
         }
 
@@ -175,14 +202,21 @@ namespace Proyecto_INGYSA_MVC_2021.Controllers
         //    return View(model);
         //}
 
+        //GET: /Account/CreateRole
+        [AllowAnonymous]
+        public ActionResult CreateRole()
+        {
+            return View();
+        }
+
+        //POST: 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterViewModel model)
+        public ActionResult CreateRole(CreateNewRole model)
         {
             INGYSA_DB_Context context = new INGYSA_DB_Context();
             IdentityResult IdRoleResult;
-            IdentityResult IdUserResult;
 
             // Create a RoleStore object by using the ApplicationDbContext object. 
             // The RoleStore is only allowed to contain IdentityRole objects.
@@ -197,18 +231,48 @@ namespace Proyecto_INGYSA_MVC_2021.Controllers
                 IdRoleResult = roleMgr.Create(new IdentityRole { Name = model.Role });
             }
 
-            var userMgr = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            var appUser = new ApplicationUser
-            {
-                UserName = model.Email,
-                Email = model.Email
-            };
+            return RedirectToAction("Index", "Home");
+        }
 
-            IdUserResult = userMgr.Create(appUser, model.Password);
+        //POST: /Account/Register
+        //REGISTER
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Register(RegisterViewModel model)
+        {
+            INGYSA_DB_Context context = new INGYSA_DB_Context();
+            IdentityResult IdUserResult;
 
-            if (!userMgr.IsInRole(userMgr.FindByEmail(model.Email).Id, model.Role))
+            //var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+            //var result = await UserManager.CreateAsync(user, model.Password);
+            //if (result.Succeeded)
+            //{
+            //    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+            //    return RedirectToAction("Index", "Home");
+            //}
+            //AddErrors(result);
+
+            if (ModelState.IsValid)
             {
-                IdUserResult = userMgr.AddToRole(userMgr.FindByEmail(model.Email).Id, model.Role);
+                var userMgr = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var appUser = new ApplicationUser
+                {
+                    UserName = model.User.Replace(" ", "_"),
+                    Email = model.Email
+                };
+
+                IdUserResult = userMgr.Create(appUser, model.Password);
+
+                if (!userMgr.IsInRole(userMgr.FindByEmail(model.Email).Id, model.Role.ToString()))
+                {
+                    IdUserResult = userMgr.AddToRole(userMgr.FindByEmail(model.Email).Id, model.Role.ToString());
+                    if (IdUserResult.Succeeded && (User.Identity.Name == null || User.Identity.Name == ""))
+                    {
+                        await SignInManager.SignInAsync(appUser, isPersistent: false, rememberBrowser: false);
+                    }
+                }
             }
 
             return RedirectToAction("Index", "Home");

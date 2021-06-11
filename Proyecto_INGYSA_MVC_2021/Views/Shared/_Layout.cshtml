@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="~/img/Logo_INGYSA.png">
     <link rel="stylesheet" href="~/Content/layout.css">
     <link rel="stylesheet" href="~/Content/layout_tablet.css" media="screen and (min-width: 500px)">
-    <link rel="stylesheet" href="~/Content/layout_desktop.css" media="screen and (min-width: 850px)">
+    <link rel="stylesheet" href="~/Content/layout_desktop.css" media="screen and (min-width: 830px)">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -31,7 +31,6 @@
                         <ul class="nav-bar">
                             <li class="nav-bar-item"><a href="/">Inicio</a></li>
                             @Html.Partial("_LoginPartial")
-                            @*<li class="nav-bar-item">@Context.User.Identity.Name</li>*@
                         </ul>
                     }
                     else

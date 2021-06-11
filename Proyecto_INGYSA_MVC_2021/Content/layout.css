@@ -99,6 +99,7 @@ nav .nav-bar li a:hover {
     transition: all .4s linear;
 }
 .nav .nav-bar a{
+    color: red;
     display: block;
     font-size: 2rem;
     padding: .8rem 0;
