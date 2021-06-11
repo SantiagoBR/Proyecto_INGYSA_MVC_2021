@@ -1,6 +1,7 @@
 ﻿@model Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.MVVM.DocenteVM
 
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Index";
 }
 
@@ -10,6 +11,15 @@
     <p>
         @Html.ActionLink("Create New", "Create", "", new { htmlAttributes = new { @class = "btn btn-primary" } })
     </p>
+    <div class="form-group col-md-4 col-sm-12">
+        @using (Html.BeginForm())
+        {
+            <p>
+                Buscar por nombre: @Html.TextBox("filtro")
+                <input type="submit" value="Buscar"/>
+            </p>
+        }
+    </div>
     <table class="table">
         <tr>
             <th>

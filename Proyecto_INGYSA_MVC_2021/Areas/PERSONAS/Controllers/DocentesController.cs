@@ -22,19 +22,34 @@ namespace Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Controllers
             ViewBag.Especialidades = from e in db.Especialidad
                                      orderby e.Descripcion
                                      select e;
-
         }
 
 
         // GET: PERSONAS/Docentes
-        public ActionResult Index()
+        public ActionResult Index(string filtro)
         {
             DocenteVM docenteVM = new DocenteVM();
-            docenteVM.docentes = db.Docentes.ToList();
-            docenteVM.HistoricoDocumentoPersonas = db.HistoricoDocumentoPersonas.ToList();
-            docenteVM.HistoricoTelefonoPersonas = db.HistoricoTelefonoPersonas.ToList();
-            docenteVM.HistoricoPersonaDireccions = db.HistoricoPersonaDireccions.ToList();
-            
+            if (String.IsNullOrEmpty(filtro))
+            {
+                docenteVM.docentes = db.Docentes.ToList();
+                docenteVM.HistoricoDocumentoPersonas = db.HistoricoDocumentoPersonas.ToList();
+                docenteVM.HistoricoTelefonoPersonas = db.HistoricoTelefonoPersonas.ToList();
+                docenteVM.HistoricoPersonaDireccions = db.HistoricoPersonaDireccions.ToList();
+            }
+            else
+            {
+                docenteVM.HistoricoDocumentoPersonas = new List<HistoricoDocumentoPersona>();
+                docenteVM.HistoricoTelefonoPersonas = new List<HistoricoTelefonoPersona>();
+                docenteVM.HistoricoPersonaDireccions = new List<HistoricoPersonaDireccion>();
+                docenteVM.docentes = db.Docentes.Where(s => s.ApellidoP.Contains(filtro.Trim())).ToList();
+                for (int x = 0; x < docenteVM.docentes.Count; x++)
+                {
+                    int personaId = docenteVM.docentes[x].PersonaId;
+                    docenteVM.HistoricoDocumentoPersonas.Add(db.HistoricoDocumentoPersonas.Where(s => s.PersonaId == personaId).FirstOrDefault());
+                    docenteVM.HistoricoTelefonoPersonas.Add(db.HistoricoTelefonoPersonas.Where(s => s.PersonaId == personaId).FirstOrDefault());
+                    docenteVM.HistoricoPersonaDireccions.Add(db.HistoricoPersonaDireccions.Where(s => s.PersonaId == personaId).FirstOrDefault());
+                }
+            }   
             return View(docenteVM);
         }
 

@@ -17,11 +17,11 @@ namespace Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.Metadata
         RegularExpression("(^[a-zA-ZÑÁÉÍÓÚñáéíóú /s]+$)", ErrorMessage = "Solo Ingrese Letras")]
         public string Nombres { get; set; }
         [Required(ErrorMessage = "El Apellido paterno es Obligatorio."),
-        StringLength(50, ErrorMessage = "Ingrese un Apellido mas pequeño"), MinLength(5, ErrorMessage = "Apellido Muy Corto"),
+        StringLength(50, ErrorMessage = "Ingrese un Apellido mas pequeño"),
         RegularExpression("(^[a-zA-ZÑÁÉÍÓÚñáéíóú /s]+$)", ErrorMessage = "Solo Ingrese Letras")]
         public string ApellidoP { get; set; }
         [Required(ErrorMessage = "El Apellido Materno es Obligatorio."),
-        StringLength(50, ErrorMessage = "Ingrese un Apellido mas pequeño"), MinLength(5, ErrorMessage = "Apellido Muy Corto"),
+        StringLength(50, ErrorMessage = "Ingrese un Apellido mas pequeño"),
         RegularExpression("(^[a-zA-ZÑÁÉÍÓÚñáéíóú /s]+$)", ErrorMessage = "Solo Ingrese Letras")]
         public string ApellidoM { get; set; }
         [DataType(DataType.Date)]
