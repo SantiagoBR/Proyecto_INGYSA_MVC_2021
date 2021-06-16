@@ -14,6 +14,7 @@
 
     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
+            
             @Html.AntiForgeryToken()
 
             <div id="loginForm" class="container-form">
@@ -21,8 +22,10 @@
                 <div class="container-form__div--title">
                     <h2 class="container-form__title">@ViewBag.Title</h2>
                 </div>
-
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <label class="container-form__label">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                </label>
+                <label class="container-form__label"></label>
 
                 <label class="container-form__label">
                     <span class="container-form__label--name">Nombre de Usuario: </span>
