@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "CREAR DOCENTE";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <head>
@@ -11,71 +12,71 @@
 
 <main class="main">
     @using (Html.BeginForm())
-    {
+     {
         @Html.AntiForgeryToken()
 
-    <div class="container-form">
+        <div class="container-form">
 
-        @*Datos Personales*@
+            @*Datos Personales*@
 
-        <div class="container-form__div--title">
-            <h2 class="container-form__title">Datos Personales</h2>
-        </div>
+            <div class="container-form__div--title">
+                <h2 class="container-form__title">Datos Personales</h2>
+            </div>
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <label class="container-form__label">
-            <span class="container-form__label--name">Nombres: </span>
-            @Html.EditorFor(model => model.Docente.Nombres, new { htmlAttributes = new { @class = "container-form__label--input" } })
-            @Html.ValidationMessageFor(model => model.Docente.Nombres, "", new { @class = "text-danger" })
-        </label>
+            <label class="container-form__label">
+                <span class="container-form__label--name">Nombres: </span>
+                @Html.EditorFor(model => model.Docente.Nombres, new { htmlAttributes = new { @class = "container-form__label--input" } })
+                @Html.ValidationMessageFor(model => model.Docente.Nombres, "", new { @class = "text-danger" })
+            </label>
 
-        <label class="container-form__label">
-            <span class="container-form__label--name">Primer apellido: </span>
-            @Html.EditorFor(model => model.Docente.ApellidoP, new { htmlAttributes = new { @class = "container-form__label--input" } })
-            @Html.ValidationMessageFor(model => model.Docente.ApellidoP, "", new { @class = "text-danger" })
-        </label>
+            <label class="container-form__label">
+                <span class="container-form__label--name">Primer apellido: </span>
+                @Html.EditorFor(model => model.Docente.ApellidoP, new { htmlAttributes = new { @class = "container-form__label--input" } })
+                @Html.ValidationMessageFor(model => model.Docente.ApellidoP, "", new { @class = "text-danger" })
+            </label>
 
-        <label class="container-form__label">
-            <span class="container-form__label--name">Segundo apellido: </span>
-            @Html.EditorFor(model => model.Docente.ApellidoM, new { htmlAttributes = new { @class = "container-form__label--input" } })
-            @Html.ValidationMessageFor(model => model.Docente.ApellidoM, "", new { @class = "text-danger" })
-        </label>
+            <label class="container-form__label">
+                <span class="container-form__label--name">Segundo apellido: </span>
+                @Html.EditorFor(model => model.Docente.ApellidoM, new { htmlAttributes = new { @class = "container-form__label--input" } })
+                @Html.ValidationMessageFor(model => model.Docente.ApellidoM, "", new { @class = "text-danger" })
+            </label>
 
-        <label class="container-form__label">
-            <span class="container-form__label--name">Fecha de nacimiento: </span>
-            @Html.EditorFor(model => model.Docente.FechaNacimiento, new { htmlAttributes = new { @class = "container-form__label--input date-input" } })
-            @Html.ValidationMessageFor(model => model.Docente.FechaNacimiento, "", new { @class = "text-danger" })
-        </label>
+            <label class="container-form__label">
+                <span class="container-form__label--name">Fecha de nacimiento: </span>
+                @Html.EditorFor(model => model.Docente.FechaNacimiento, new { htmlAttributes = new { @class = "container-form__label--input date-input" } })
+                @Html.ValidationMessageFor(model => model.Docente.FechaNacimiento, "", new { @class = "text-danger" })
+            </label>
 
-        <label class="container-form__label">
-            <span class="container-form__label--name">Género: </span>
-            @Html.DropDownListFor(model => model.Docente.Genero, new SelectList(Enum.GetValues(typeof(Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.Genero))),
-                "Seleccione un género", new { @class = "container-form__label--input" })
-            @Html.ValidationMessageFor(model => model.Docente.Genero, "", new { @class = "text-danger" })
-        </label>
+            <label class="container-form__label">
+                <span class="container-form__label--name">Género: </span>
+                @Html.DropDownListFor(model => model.Docente.Genero, new SelectList(Enum.GetValues(typeof(Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.Genero))),
+                    "Seleccione un género", new { @class = "container-form__label--input" })
+                @Html.ValidationMessageFor(model => model.Docente.Genero, "", new { @class = "text-danger" })
+            </label>
 
-        <label class="container-form__label">
-            <span class="container-form__label--name">Grupo sanguíneo: </span>
-            @Html.DropDownListFor(model => model.Docente.TipoSangre, new SelectList(Enum.GetValues(typeof(Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.TipoSangre))),
-                        "Seleccione un tipo de sangre", new { @class = "container-form__label--input" })
-            @Html.ValidationMessageFor(model => model.Docente.TipoSangre, "", new { @class = "text-danger" })
-        </label>
+            <label class="container-form__label">
+                <span class="container-form__label--name">Grupo sanguíneo: </span>
+                @Html.DropDownListFor(model => model.Docente.TipoSangre, new SelectList(Enum.GetValues(typeof(Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.TipoSangre))),
+                            "Seleccione un tipo de sangre", new { @class = "container-form__label--input" })
+                @Html.ValidationMessageFor(model => model.Docente.TipoSangre, "", new { @class = "text-danger" })
+            </label>
 
-        <label class="container-form__label">
-            <span class="container-form__label--name">RH: </span>
-            @Html.DropDownListFor(model => model.Docente.RH, new SelectList(Enum.GetValues(typeof(Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.RH))),
-                        "Seleccione un RH", new { @class = "container-form__label--input" })
-            @Html.ValidationMessageFor(model => model.Docente.RH, "", new { @class = "text-danger" })
-        </label>
+            <label class="container-form__label">
+                <span class="container-form__label--name">RH: </span>
+                @Html.DropDownListFor(model => model.Docente.RH, new SelectList(Enum.GetValues(typeof(Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.RH))),
+                            "Seleccione un RH", new { @class = "container-form__label--input" })
+                @Html.ValidationMessageFor(model => model.Docente.RH, "", new { @class = "text-danger" })
+            </label>
 
-        <label class="container-form__label">
-            <span class="container-form__label--name">Estado: </span>
-            @Html.EditorFor(model => model.Docente.Estado, new { htmlAttributes = new { @class = "container-form__label--checkBox" } })
-            @Html.ValidationMessageFor(model => model.Docente.Estado, "", new { @class = "text-danger" })
-        </label>
+            <label class="container-form__label">
+                <span class="container-form__label--name">Estado: </span>
+                @Html.EditorFor(model => model.Docente.Estado, new { htmlAttributes = new { @class = "container-form__label--checkBox" } })
+                @Html.ValidationMessageFor(model => model.Docente.Estado, "", new { @class = "text-danger" })
+            </label>
 
-        @*Datos del Documento*@
+            @*Datos del Documento*@
 
         <div class="container-form__div--title">
             <h2 class="container-form__title">Datos del Documento</h2>
@@ -106,76 +107,71 @@
             @Html.ValidationMessageFor(model => model.HistoricoDocumentoPersona.Estado, "", new { @class = "text-danger" })
         </label>
 
-        @*Datos Telefonicos*@
+            @*Datos Telefonicos*@
 
-        <div class="container-form__div--title">
-            <h2 class="container-form__title">Datos Teléfonicos</h2>
-        </div>
+            <div class="container-form__div--title">
+                <h2 class="container-form__title">Datos Teléfonicos</h2>
+            </div>
 
-        <label class="container-form__label">
-            <span class="container-form__label--name">Tipo de teléfono: </span>
-            @Html.DropDownListFor(model => model.HistoricoTelefonoPersona.TiposTelefono, new SelectList(Enum.GetValues(typeof(Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.TiposTelefono))),
-                    "Seleccione un tipo de teléfono", new { @class = "container-form__label--input" })
-            @Html.ValidationMessageFor(model => model.HistoricoTelefonoPersona.TiposTelefono, "", new { @class = "text-danger" })
-        </label>
+            <label class="container-form__label">
+                <span class="container-form__label--name">Tipo de teléfono: </span>
+                @Html.DropDownListFor(model => model.HistoricoTelefonoPersona.TiposTelefono, new SelectList(Enum.GetValues(typeof(Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.TiposTelefono))),
+                        "Seleccione un tipo de teléfono", new { @class = "container-form__label--input" })
+                @Html.ValidationMessageFor(model => model.HistoricoTelefonoPersona.TiposTelefono, "", new { @class = "text-danger" })
+            </label>
 
-        <label class="container-form__label">
-            <span class="container-form__label--name">Número de teléfono: </span>
-            @Html.EditorFor(model => model.HistoricoTelefonoPersona.Numero, new { htmlAttributes = new { @class = "container-form__label--input" } })
-            @Html.ValidationMessageFor(model => model.HistoricoTelefonoPersona.Numero, "", new { @class = "text-danger" })
-        </label>
+            <label class="container-form__label">
+                <span class="container-form__label--name">Número de teléfono: </span>
+                @Html.EditorFor(model => model.HistoricoTelefonoPersona.Numero, new { htmlAttributes = new { @class = "container-form__label--input" } })
+                @Html.ValidationMessageFor(model => model.HistoricoTelefonoPersona.Numero, "", new { @class = "text-danger" })
+            </label>
 
-        <label class="container-form__label">
-            <span class="container-form__label--name">Estado: </span>
-            @Html.EditorFor(model => model.HistoricoTelefonoPersona.Estado, new { htmlAttributes = new { @class = "container-form__label--checkBox" } })
-            @Html.ValidationMessageFor(model => model.HistoricoTelefonoPersona.Estado, "", new { @class = "text-danger" })
-        </label>
-        <label class="container-form__label">
-        </label>
+            <label class="container-form__label">
+                <span class="container-form__label--name">Estado: </span>
+                @Html.EditorFor(model => model.HistoricoTelefonoPersona.Estado, new { htmlAttributes = new { @class = "container-form__label--checkBox" } })
+                @Html.ValidationMessageFor(model => model.HistoricoTelefonoPersona.Estado, "", new { @class = "text-danger" })
+            </label>
+            <label class="container-form__label">
+            </label>
 
-        @*Datos de ubicación*@
+            @*Datos de ubicación*@
 
-        <div class="container-form__div--title">
-            <h2 class="container-form__title">Datos de ubicación</h2>
-        </div>
+            <div class="container-form__div--title">
+                <h2 class="container-form__title">Datos de ubicación</h2>
+            </div>
 
-        <label class="container-form__label">
-            <span class="container-form__label--name">Dirección: </span>
-            @Html.EditorFor(model => model.HistoricoPersonaDireccion.Direccion, new { htmlAttributes = new { @class = "container-form__label--input" } })
-            @Html.ValidationMessageFor(model => model.HistoricoPersonaDireccion.Direccion, "", new { @class = "text-danger" })
-        </label>
+            <label class="container-form__label">
+                <span class="container-form__label--name">Dirección: </span>
+                @Html.EditorFor(model => model.HistoricoPersonaDireccion.Direccion, new { htmlAttributes = new { @class = "container-form__label--input" } })
+                @Html.ValidationMessageFor(model => model.HistoricoPersonaDireccion.Direccion, "", new { @class = "text-danger" })
+            </label>
 
-        <label class="container-form__label">
-            <span class="container-form__label--name">Estado: </span>
-            @Html.EditorFor(model => model.HistoricoPersonaDireccion.Estado, new { htmlAttributes = new { @class = "container-form__label--checkBox" } })
-            @Html.ValidationMessageFor(model => model.HistoricoPersonaDireccion.Estado, "", new { @class = "text-danger" })
-        </label>
+            <label class="container-form__label">
+                <span class="container-form__label--name">Estado: </span>
+                @Html.EditorFor(model => model.HistoricoPersonaDireccion.Estado, new { htmlAttributes = new { @class = "container-form__label--checkBox" } })
+                @Html.ValidationMessageFor(model => model.HistoricoPersonaDireccion.Estado, "", new { @class = "text-danger" })
+            </label>
 
-        @*Especialidad de Docente*@
+            @*Especialidad de Docente*@
 
-        <div class="container-form__div--title">
-            <h2 class="container-form__title">Especialidad</h2>
-        </div>
+            <div class="container-form__div--title">
+                <h2 class="container-form__title">Especialidad</h2>
+            </div>
 
-        <label class="container-form__label">
-            <span class="container-form__label--name">Especialidad: </span>
-            @Html.DropDownListFor(model => model.Docente.EspecialidadId, new SelectList(ViewBag.Especialidades, "EspecialidadId", "Descripcion"),
-                        "Selecione una especialidad", new { @class = "container-form__label--input " })
-            @Html.ValidationMessageFor(model => model.Docente.EspecialidadId, "", new { @class = "text-danger" })
-        </label>
-        <label class="container-form__label">
-        </label>
+            <label class="container-form__label">
+                <span class="container-form__label--name">Especialidad: </span>
+                @Html.DropDownListFor(model => model.Docente.EspecialidadId, new SelectList(ViewBag.Especialidades, "EspecialidadId", "Descripcion"),
+                            "Selecione una especialidad", new { @class = "container-form__label--input " })
+                @Html.ValidationMessageFor(model => model.Docente.EspecialidadId, "", new { @class = "text-danger" })
+            </label>
+            <label class="container-form__label">
+            </label>
 
-        @Html.ActionLink("Volver", "Index", null, new { @class = "container-form__label--button container-form__label--anchor" })
-        <input type="submit" value="Crear" class="container-form__label--button" />
-    </div>
-        }
+            @Html.ActionLink("Volver", "Index", null, new { @class = "container-form__label--button container-form__label--anchor" })
+            <input type="submit" value="Crear" class="container-form__label--button" />
+       </div>
+     }
 </main>
-
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

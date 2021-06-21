@@ -1,20 +1,49 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    <li class="nav-bar-item">
-        @Html.ActionLink("Estudiantes", "Index", "EstudianteVM", new { @area = "PERSONAS" } , null)
-    </li>
-    using (Html.BeginForm("LogOff", "Account", new { @area = "" } ,FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("LogOff", "Account", new { @area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
         <li class="nav-bar-item">
-        @Html.ActionLink("Hola " + User.Identity.GetUserName().Replace("_", " ") + "!", "Index", "Manage", new { @area = "" }, htmlAttributes: new { title = "Administrar cuenta" })
+            @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <style type="text/css">
+            ul, ol {
+                list-style: none;
+            }
+
+            .nav li ul {
+                display: none;
+                position: absolute;
+                min-width: 140px;
+                background: #121F3D;
+                position: absolute;
+                z-index: 1;
+            }
+
+            .nav li:hover > ul {
+                display: block;
+            }
+        </style>
+        <li class="nav-bar-item">
+            <a href="">Estudiantes</a>
+            <ul>
+                <li> @Html.ActionLink("Ver estudiantes", "Index", "EstudianteVM", new { @area = "PERSONAS" }, null)</li>
+                <li> @Html.ActionLink("Crear estudiante", "Create", "EstudianteVM", new { @area = "PERSONAS" }, null)</li>
+            </ul>
+        </li>
+        <li class="nav-bar-item">
+            <a href="">Docente</a>
+            <ul>
+                <li> @Html.ActionLink("Ver docentes", "Index", "Docentes", new { @area = "PERSONAS" }, null)</li>
+                <li> @Html.ActionLink("Crear docente", "Create", "Docentes", new { @area = "PERSONAS" }, null)</li>
+            </ul>
         </li>
         <li class="nav-bar-item"><a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>
     }
- }
- else
- {
-    <li class="nav-bar-item">@Html.ActionLink("Registrarse", "Register", "Account", new { @area = ""} ,htmlAttributes: new { id = "registerLink" })</li>
-    <li class="nav-bar-item">@Html.ActionLink("Iniciar sesión", "Login", "Account", new { @area = "" }, htmlAttributes: new { id = "loginLink" })</li>
- }
+}
+else
+{
+    <li class="nav-bar-item">@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li class="nav-bar-item">@Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+}
