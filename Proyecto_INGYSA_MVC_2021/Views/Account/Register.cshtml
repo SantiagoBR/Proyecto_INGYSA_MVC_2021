@@ -1,59 +1,60 @@
 ﻿@model Proyecto_INGYSA_MVC_2021.Models.RegisterViewModel
 @{
     ViewBag.Title = "Registrarse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     List<SelectListItem> Items = (List<SelectListItem>)ViewBag.items;
 }
 
-<main>
-    <h2>@ViewBag.Title.</h2>
+<head>
+    <link href="~/Content/forms.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/forms_desktop.css" media="screen and (min-width: 530px)">
+</head>
 
+<main class="main">
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
+     {
         @Html.AntiForgeryToken()
-        <h4>Cree una cuenta nueva.</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-            </div>
+
+    <div class="container-form">
+        <div class="container-form__div--title">
+            <h2 class="container-form__title">@ViewBag.Title</h2>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.User, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.User, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.User, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Role, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.Role, Items, "Seleccione uno por favor", new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Role, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" class="btn btn-default" value="Registrarse" />
-            </div>
-        </div>
-    }
+
+        <label class="container-form__label">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </label>
+        <label class="container-form__label"></label>
+
+        <label class="container-form__label">
+            <span class="container-form__label--name">Correo Electrónico: </span>
+            @Html.TextBoxFor(m => m.Email, new { @class = "container-form__label--input" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </label>
+        <label class="container-form__label">
+            <span class="container-form__label--name">Nombre de Usuario: </span>
+            @Html.TextBoxFor(m => m.User, new { @class = "container-form__label--input" })
+            @Html.ValidationMessageFor(m => m.User, "", new { @class = "text-danger" })
+        </label>
+        <label class="container-form__label">
+            <span class="container-form__label--name">Rol de usuario: </span>
+            @Html.DropDownListFor(m => m.Role, Items, "Seleccione uno por favor", new { @class = "container-form__label--input" })
+            @Html.ValidationMessageFor(m => m.Role, "", new { @class = "text-danger" })
+        </label>
+        <label class="container-form__label">
+            <span class="container-form__label--name">Contraseña: </span>
+            @Html.PasswordFor(m => m.Password, new { @class = "container-form__label--input" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </label>
+        <label class="container-form__label">
+            <span class="container-form__label--name">Confirmar contraseña: </span>
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "container-form__label--input" })
+            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+        </label>
+        <label class="container-form__label"></label>
+
+        <input type="submit" value="Registrarse" class="container-form__label--button" />
+    </div>        
+     }
 </main>
 
 @section Scripts {

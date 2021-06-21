@@ -1,36 +1,40 @@
 ﻿@model Proyecto_INGYSA_MVC_2021.Models.CreateNewRole
 
 @{
-    ViewBag.Title = "CreateRole";
+    ViewBag.Title = "Crear un rol";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>CreateRole</h2>
+<head>
+    <link href="~/Content/forms.css" rel="stylesheet" /><link rel="stylesheet" href="~/Content/forms_desktop.css" media="screen and (min-width: 530px)">
+</head>
 
+<main class="main">
+    @using (Html.BeginForm())
+     {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>CreateNewRole</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Role, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="container-form">
+
+            <div class="container-form__div--title">
+                <h2 class="container-form__title">@ViewBag.Title</h2>
+            </div>
+
+            @*<label class="container-form__label">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </label>*@
+
+            <label class="container-form__label">
+                <span class="container-form__label--name">Nombre de rol: </span>
+                @Html.EditorFor(model => model.Role, new { htmlAttributes = new { @class = "container-form__label--input" } })
                 @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            </label>
+            <label class="container-form__label"></label>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+            <input type="submit" value="Crear" class="container-form__label--button" />
         </div>
-    </div>
-}
+     }
+</main>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
