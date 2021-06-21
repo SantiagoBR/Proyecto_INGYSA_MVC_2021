@@ -8,7 +8,7 @@
             @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <style type="text/css">
-            ul, ol {
+            ul {
                 list-style: none;
             }
 
@@ -19,6 +19,8 @@
                 background: #121F3D;
                 position: absolute;
                 z-index: 1;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
             }
 
             .nav li:hover > ul {
