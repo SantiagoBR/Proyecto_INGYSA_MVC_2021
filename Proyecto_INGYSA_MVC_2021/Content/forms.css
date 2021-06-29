@@ -98,11 +98,11 @@ html {
     cursor: pointer;
 }
 
-    .container-form__label--button:hover {
-        background-color: var(--primary-color);
-        opacity: .9;
-        box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-    }
+.container-form__label--button:hover {
+    background-color: var(--primary-color);
+    opacity: .9;
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+}
 
 .container-form__label--anchor {
     display: inline-block;

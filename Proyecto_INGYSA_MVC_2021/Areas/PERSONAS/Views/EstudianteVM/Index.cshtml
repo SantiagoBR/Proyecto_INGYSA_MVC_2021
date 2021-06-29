@@ -5,75 +5,70 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main>
-    <h2>Index</h2>
+<link href="~/Content/tables.css" rel="stylesheet" media="screen and (max-width: 990px)" />
+<link href="~/Content/tables_desktop.css" rel="stylesheet" />
 
-    <p>
-        @Html.ActionLink("Create New", "Create", "", new { htmlAttributes = new { @class = "btn btn-primary" } })
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Estudiante.Nombres)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estudiante.ApellidoP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estudiante.ApellidoM)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estudiante.FechaNacimiento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estudiante.Genero)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estudiante.TipoSangre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estudiante.RH)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estudiante.Estado)
-            </th>
-            <th></th>
-        </tr>
+<main class="main">        
+    <div class="table-container">
 
-        @foreach (var item in Model.estudiantes)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombres)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ApellidoP)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ApellidoM)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaNacimiento)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Genero)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TipoSangre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RH)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Estado)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.PersonaId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.PersonaId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.PersonaId })
-                </td>
-            </tr>
-         }
+        <div class="container-form__div--title">
+            <h2 class="container-form__title">@ViewBag.Title</h2>
+        </div>
 
-    </table>
+        @Html.ActionLink("Crear nuevo", "Create", "", new { @class = "container-form__label--button container-form__label--anchor" })
+
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombres</th>
+                        <th>1er Apellido</th>
+                        <th>2do Apellido</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Género</th>
+                        <th>Tipo de Sangre</th>
+                        <th>RH</th>
+                        <th>Estado</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.estudiantes)
+                    {
+                        <tr>
+                            <td data-label="Nombres">
+                                @Html.DisplayFor(modelItem => item.Nombres)
+                            </td>
+                            <td data-label="1er Apellido">
+                                @Html.DisplayFor(modelItem => item.ApellidoP)
+                            </td>
+                            <td data-label="2do Apellido">
+                                @Html.DisplayFor(modelItem => item.ApellidoM)
+                            </td>
+                            <td data-label="Fecha de Nacimiento">
+                                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+                            </td>
+                            <td data-label="Genero">
+                                @Html.DisplayFor(modelItem => item.Genero)
+                            </td>
+                            <td data-label="Tipo de Sangre">
+                                @Html.DisplayFor(modelItem => item.TipoSangre)
+                            </td>
+                            <td data-label="RH">
+                                @Html.DisplayFor(modelItem => item.RH)
+                            </td>
+                            <td data-label="Estado">
+                                @Html.DisplayFor(modelItem => item.Estado, new { htmlAttributes = new { @class = "container-form__label--checkBox" } })
+                            </td>
+                            <td data-label="Opciones">
+                                @Html.ActionLink("Editar", "Edit", new { id = item.PersonaId }, new { @class = "opciones opciones-a__a" })  
+                                @Html.ActionLink("Detalles", "Details", new { id = item.PersonaId }, new { @class = "opciones opciones-a__b" })  
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.PersonaId }, new { @class = "opciones opciones-a__c" })
+                            </td>
+                        </tr>
+                     }
+                </tbody>
+            </table>
+        </div>        
+    </div>
 </main>

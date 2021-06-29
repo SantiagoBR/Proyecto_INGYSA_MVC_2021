@@ -290,6 +290,8 @@
     <Content Include="Content\layout.css" />
     <Content Include="Content\layout_desktop.css" />
     <Content Include="Content\layout_tablet.css" />
+    <Content Include="Content\tables.css" />
+    <Content Include="Content\tables_desktop.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="img\animacion.svg" />
