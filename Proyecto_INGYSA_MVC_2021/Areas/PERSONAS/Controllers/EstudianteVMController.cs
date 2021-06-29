@@ -6,6 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data;
 using Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.MVVM;
 using Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Logica_Negocio;
@@ -20,6 +24,10 @@ namespace Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Controllers
         // GET: PERSONAS/EstudianteVM
         public ActionResult Index()
         {
+            if (User.Identity.Name == "")
+            {
+                return RedirectToAction("Index", "Home", new { @area = "" });
+            }
             EstudianteVM estudianteVM = new EstudianteVM();
             estudianteVM.estudiantes = db.Estudiantes.ToList(); 
             estudianteVM.HistoricoDocumentoPersonas = db.HistoricoDocumentoPersonas.ToList();
@@ -32,6 +40,10 @@ namespace Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Controllers
         // GET: PERSONAS/EstudianteVM/Details/5
         public ActionResult Details(int? id)
         {
+            if (User.Identity.Name == "")
+            {
+                return RedirectToAction("Index", "Home", new { @area = ""});
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -47,6 +59,10 @@ namespace Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Controllers
         // GET: PERSONAS/EstudianteVM/Create
         public ActionResult Create()
         {
+            if (User.Identity.Name == "")
+            {
+                return RedirectToAction("Index", "Home", new { @area = "" });
+            }
             return View();
         }
 
@@ -71,6 +87,10 @@ namespace Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Controllers
         // GET: PERSONAS/EstudianteVM/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (User.Identity.Name == "")
+            {
+                return RedirectToAction("Index", "Home", new { @area = "" });
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -107,6 +127,10 @@ namespace Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Controllers
         // GET: PERSONAS/EstudianteVM/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (User.Identity.Name == "")
+            {
+                return RedirectToAction("Index", "Home", new { @area = "" });
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -1,6 +1,7 @@
 ﻿@model Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Data.MVVM.DocenteVM
 @{
     ViewBag.Title = "EDITAR DOCENTE";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <head>
@@ -10,7 +11,7 @@
 
 <main class="main">
     @using (Html.BeginForm())
-     {
+    {
         @Html.AntiForgeryToken()
 
         <div class="container-form">
@@ -170,7 +171,7 @@
             @Html.ActionLink("Volver", "Index", null, new { @class = "container-form__label--button container-form__label--anchor" })
             <input type="submit" value="Editar" class="container-form__label--button" />
         </div>
-     }
+    }
 </main>
 
 @section Scripts {

@@ -28,6 +28,10 @@ namespace Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Controllers
         // GET: PERSONAS/Docentes
         public ActionResult Index(string filtro)
         {
+            if (User.Identity.Name == "")
+            {
+                return RedirectToAction("Index", "Home", new { @area = "" });
+            }
             DocenteVM docenteVM = new DocenteVM();
             if (String.IsNullOrEmpty(filtro))
             {
@@ -56,6 +60,10 @@ namespace Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Controllers
         // GET: PERSONAS/Docentes/Details/5
         public ActionResult Details(int? id)
         {
+            if (User.Identity.Name == "")
+            {
+                return RedirectToAction("Index", "Home", new { @area = "" });
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -71,6 +79,10 @@ namespace Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Controllers
         // GET: PERSONAS/Docentes/Create
         public ActionResult Create()
         {
+            if (User.Identity.Name == "")
+            {
+                return RedirectToAction("Index", "Home", new { @area = "" });
+            }
             listadeEspecialidad();
             return View();
         }
@@ -96,6 +108,10 @@ namespace Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Controllers
         // GET: PERSONAS/Docentes/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (User.Identity.Name == "")
+            {
+                return RedirectToAction("Index", "Home", new { @area = "" });
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -133,6 +149,10 @@ namespace Proyecto_INGYSA_MVC_2021.Areas.PERSONAS.Controllers
         // GET: PERSONAS/Docentes/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (User.Identity.Name == "")
+            {
+                return RedirectToAction("Index", "Home", new { @area = "" });
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
